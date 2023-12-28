@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import bcrypt from "bcrypt"
 
 const usuarioschema = mongoose.Schema({
     nombre: {
@@ -30,6 +31,18 @@ const usuarioschema = mongoose.Schema({
     timestamps: true
 });
 
-const Usuario = mongoose.model('Usuarios', usuarioschema);
+usuarioschema.pre('save', async function(next) {
+    if (!this.isModified('pasword')) {
+        next();    
+    }
 
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+});
+
+usuarioschema.methods.comprobarPassword = async function(password) {
+    return await bcrypt.compare(password, this.password);
+}
+
+const Usuario = mongoose.model('Usuarios', usuarioschema);
 export default Usuario;
