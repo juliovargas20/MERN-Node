@@ -1,0 +1,6 @@
+/****BACKEND
+    - npm init
+    - npm i express
+    - npm i -D nodemon
+    - npm i mongoose
+    - npm i dotenv
