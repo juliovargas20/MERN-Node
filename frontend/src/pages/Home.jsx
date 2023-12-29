@@ -1,6 +1,13 @@
 function Home() {
   return (
-    <div>Home</div>
+    <>
+      <h1 className="text-4xl font-black mt-4">Listado de Usuarios</h1>
+
+      <div>
+    
+
+      </div>
+    </>
   )
 }
 
