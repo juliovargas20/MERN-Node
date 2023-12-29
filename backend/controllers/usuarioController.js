@@ -31,7 +31,7 @@ const autenticar = async (req, res) => {
     const usuario = await Usuario.findOne({ email });
     if (!usuario) {
         const error = new Error('El usuario no existe');
-        return res.status(404).json(error.message);
+        return res.status(404).json({ msg: error.message});
     }
 
     // COMPROBAR SI EL PASSWORD ES CORRECTO
@@ -45,7 +45,7 @@ const autenticar = async (req, res) => {
         })
     } else {
         const error = new Error('El password es Incorrecto');
-        return res.status(404).json(error.message);
+        return res.status(404).json({ msg: error.message});
     }
 }
 

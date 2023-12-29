@@ -12,7 +12,7 @@ dotenv.config();
 ConectarDB();
 
 //CORS
-const whilelist = ['http://localhost:5173'];
+const whilelist = [process.env.FRONTEND_URL];
 
 const corsOptions = {
     origin: function(origin, callback) {
@@ -25,6 +25,8 @@ const corsOptions = {
         }
     }
 }
+
+app.use(cors(corsOptions));
 
 //ROUTING
 app.use('/api/usuarios', usuarioRoutes);
